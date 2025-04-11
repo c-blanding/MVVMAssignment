@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MVVM.ContactDetailsPage"
+             xmlns:vm="clr-namespace:MVVM.ViewModels"
+             xmlns:converters="clr-namespace:MVVM.Converters"
+             Title="ContactDetailsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Declare the converter -->
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <vm:ContactDetailsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <!-- Bind each field and use the converter to invert the IsEditing flag -->
+            <Entry Text="{Binding SelectedContact.Name}"
+                   IsReadOnly="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+            <Entry Text="{Binding SelectedContact.Email}"
+                   IsReadOnly="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+            <Entry Text="{Binding SelectedContact.PhoneNumber}"
+                   IsReadOnly="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+            <Editor Text="{Binding SelectedContact.Description}"
+                    IsReadOnly="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}"
+                    HeightRequest="100" />
+
+            <!-- Buttons for toggling editing and saving changes -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <!-- 'Edit' shows when NOT editing -->
+                <Button Text="Edit"
+                        Command="{Binding EditCommand}"
+                        IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+                <!-- 'Save' shows when editing -->
+                <Button Text="Save"
+                        Command="{Binding SaveContactCommand}"
+                        IsVisible="{Binding IsEditing}" />
+            </StackLayout>
+
+            <!-- Back button -->
+            <Button Text="Back" Command="{Binding GoBackCommand}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

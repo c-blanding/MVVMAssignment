@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MVVM.ContactsPage"
+             xmlns:vm="clr-namespace:MVVM.ViewModels"
+             Title="ContactsPage">
+    <ContentPage.BindingContext>
+        <vm:ContactsViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Padding="20">
+        <CollectionView ItemsSource="{Binding Contacts}"
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding Name}" FontSize="Medium"/>
+                        <Label Text="{Binding Email}" FontSize="Small"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Add Contact" Command="{Binding GoToAddContactCommand}" />
+    </StackLayout>
+</ContentPage>
