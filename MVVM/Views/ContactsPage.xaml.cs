@@ -16,7 +16,7 @@ public partial class ContactsPage : ContentPage
         if (e.CurrentSelection.FirstOrDefault() is Models.Contact selectedContact)
         {
             await viewModel.SelectContactCommand.ExecuteAsync(selectedContact);
-            // Deselect item so that the user can tap again.
+        
             ((CollectionView)sender).SelectedItem = null;
         }
     }

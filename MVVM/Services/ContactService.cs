@@ -12,7 +12,6 @@ namespace MVVM.Services
     {
         public static ObservableCollection<Models.Contact> Contacts { get; } = new ObservableCollection<Models.Contact>();
 
-        // Add a property to hold the current selected contact.
         public static Models.Contact CurrentContact { get; set; }
     }
 

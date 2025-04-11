@@ -21,10 +21,8 @@ namespace MVVM.ViewModels
             if (selectedContact == null)
                 return;
 
-            // Set the static CurrentContact to the selected contact.
             ContactService.CurrentContact = selectedContact;
 
-            // Navigate to the contact details page using its named route.
             await Shell.Current.GoToAsync("//contactdetails", true);
         }
 

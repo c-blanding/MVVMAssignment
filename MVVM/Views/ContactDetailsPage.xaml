@@ -8,7 +8,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!-- Declare the converter -->
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -19,7 +18,6 @@
 
     <ScrollView>
         <StackLayout Padding="20" Spacing="15">
-            <!-- Bind each field and use the converter to invert the IsEditing flag -->
             <Entry Text="{Binding SelectedContact.Name}"
                    IsReadOnly="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
             <Entry Text="{Binding SelectedContact.Email}"
@@ -30,19 +28,16 @@
                     IsReadOnly="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}"
                     HeightRequest="100" />
 
-            <!-- Buttons for toggling editing and saving changes -->
             <StackLayout Orientation="Horizontal" Spacing="10">
-                <!-- 'Edit' shows when NOT editing -->
+        
                 <Button Text="Edit"
                         Command="{Binding EditCommand}"
                         IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
-                <!-- 'Save' shows when editing -->
                 <Button Text="Save"
                         Command="{Binding SaveContactCommand}"
                         IsVisible="{Binding IsEditing}" />
             </StackLayout>
 
-            <!-- Back button -->
             <Button Text="Back" Command="{Binding GoBackCommand}" />
         </StackLayout>
     </ScrollView>

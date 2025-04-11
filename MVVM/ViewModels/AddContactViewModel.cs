@@ -43,10 +43,8 @@ namespace MVVM.ViewModels
 
             ContactService.Contacts.Add(newContact);
 
-            // Optionally clear the input fields.
             Name = Email = PhoneNumber = Description = string.Empty;
 
-            // Navigate to the Contacts Page (using Shell navigation).
             await Shell.Current.GoToAsync("//contacts");
         }
     }
